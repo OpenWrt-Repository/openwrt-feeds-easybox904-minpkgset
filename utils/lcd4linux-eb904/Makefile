@@ -9,20 +9,15 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=lcd4linux
 #PKG_REV:=1203
-PKG_REV:=4f027
-PKG_VERSION:=r$(PKG_REV)
-PKG_RELEASE:=4
+#PKG_REV:=4f027
+PKG_REV:=2019-07-19-0b83bb3a
+PKG_VERSION:=$(PKG_REV)
+#PKG_RELEASE:=4
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-#PKG_SOURCE_URL:=https://ssl.bulix.org/svn/lcd4linux/trunk/
-#PKG_SOURCE_SUBDIR:=lcd4linux-$(PKG_VERSION)
-#PKG_SOURCE_VERSION:=$(PKG_REV)
-#PKG_SOURCE_PROTO:=svn
-
-PKG_SOURCE_URL:=https://github.com/netfun2000/lcd4linux.git
-PKG_SOURCE_SUBDIR:=lcd4linux-$(PKG_VERSION)
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+PKG_SOURCE_URL:=https://sources.openwrt.org/$(PKG_SOURCE)
 PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_SOURCE_PROTO:=git
+PKG_HASH:=26a3469bce0648b276e2c818add7049685c7f461ea9669d23730dfc3a96d9934
 
 LCD4LINUX_DRIVERS:= \
 	ASTUSB \
@@ -37,6 +32,7 @@ LCD4LINUX_DRIVERS:= \
 	EFN \
 	FutabaVFD \
 	FW8888 \
+	G15 \
 	GLCD2USB \
 	IRLCD \
 	$(if $(CONFIG_BROKEN),HD44780) \
@@ -76,7 +72,6 @@ LCD4LINUX_DRIVERS:= \
 	VNC \
 	serdisplib \
 	WincorNixdorf \
-#	G15 \
 #	ULA200 \
 #	X11 \
 
@@ -158,6 +153,7 @@ $(call Package/lcd4linux-eb904/Default)
   DEPENDS:= \
 	+LCD4LINUX_EB904_CUSTOM_NEEDS_libdbus:libdbus \
 	+serdisplib \
+	+libusb-compat \
 	+LCD4LINUX_EB904_CUSTOM_NEEDS_libgd:libgd \
 	$(if $(ICONV_FULL),+LCD4LINUX_EB904_CUSTOM_NEEDS_libiconv:libiconv-full) \
 	+LCD4LINUX_EB904_CUSTOM_NEEDS_libjpeg:libjpeg \
@@ -165,7 +161,7 @@ $(call Package/lcd4linux-eb904/Default)
 	+LCD4LINUX_EB904_CUSTOM_NEEDS_libmysqlclient:libmysqlclient \
 	+LCD4LINUX_EB904_CUSTOM_NEEDS_libncurses:libncurses \
 	+LCD4LINUX_EB904_CUSTOM_NEEDS_libsqlite3:libsqlite3 \
-	+LCD4LINUX_EB904_CUSTOM_NEEDS_libusb:libusb-compat \
+#	+LCD4LINUX_EB904_CUSTOM_NEEDS_libusb:libusb-compat \
 #	+LCD4LINUX_EB904_CUSTOM_NEEDS_libftdi:libftdi \
 #	+LCD4LINUX_EB904_CUSTOM_NEEDS_libX11:libX11 \
 #	+LCD4LINUX_EB904_CUSTOM_NEEDS_python:python
@@ -188,7 +184,6 @@ endef
 define Package/lcd4linux-eb904-full
 $(call Package/lcd4linux-eb904/Default)
   DEPENDS:= @DEVEL \
-	+serdisplib \
 	+libdbus \
 	+libgd \
 	$(if $(ICONV_FULL),+libiconv-full) \

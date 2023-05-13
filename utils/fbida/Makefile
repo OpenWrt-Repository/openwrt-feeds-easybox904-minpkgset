@@ -7,13 +7,10 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=fbida
 PKG_VERSION:=2.08
-#PKG_VERSION:=2.14
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://www.kraxel.org/releases/fbida/
 #PKG_MD5SUM:=3e05910fb7c1d9b2bd3e272d96db069c
-PKG_HASH:=298e7f3545e33596a5876f6b9c3da7ef475c2692e5fab0df824fbcd7a489cd80
-#PKG_HASH:=95b7c01556cb6ef9819f358b314ddfeb8a4cbe862b521a3ed62f03d163154438
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
@@ -40,7 +37,7 @@ endef
 define Package/fbgs
     $(call Package/fbida)
     TITLE:=A wrapper script for viewing ps/pdf files on the framebuffer console using fbi.
-    DEPENDS:=+fbi +ghostscript
+    DEPENDS:=+fbi
 endef
 
 TARGET_LDFLAGS+=-Wl,-rpath-link=$(STAGING_DIR)/usr/lib -liconv

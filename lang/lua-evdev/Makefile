@@ -14,8 +14,8 @@ PKG_MAINTAINER:=Quallenauge <Hamsi2k@freenet.de>
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
 
+#PKG_SOURCE_URL:=git://github.com/Tangent128/lua-evdev.git
 PKG_SOURCE_URL:=https://github.com/Tangent128/lua-evdev.git
-#PKG_SOURCE_URL:=https://github.com/zhangxiangxiao/lua-evdev.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
